@@ -11,6 +11,7 @@ import Terms from "./Terms&Condition/Terms";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import ErrorPage from "./ErrorPage/ErrorPage";
+import Policy from "./PrivacyPolicy/Policy";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/terms&condition",
         element: <Terms></Terms>,
+      },
+      {
+        path: "/policy",
+        element: <Policy></Policy>,
       },
     ],
   },
