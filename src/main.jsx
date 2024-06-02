@@ -10,10 +10,12 @@ import AuthProvider from "./AuthProvider";
 import Terms from "./Terms&Condition/Terms";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import ErrorPage from "./ErrorPage/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/login",
