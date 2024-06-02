@@ -157,7 +157,9 @@ const Nav = () => {
         </div>
         <div className="hidden md:flex items-center justify-end gap-1">
           <ModeToggle></ModeToggle>
-          <Button variant={"outline"}>fsdfasdf</Button>
+          <NavLink to="/login">
+            <Button variant={"outline"}>Login</Button>
+          </NavLink>
         </div>
       </div>
     </nav>
