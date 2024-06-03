@@ -57,7 +57,11 @@ const Nav = () => {
                 <DropdownMenuLabel>
                   <div className="mx-6">{user?.displayName}</div>
                 </DropdownMenuLabel>
+
                 <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link to="/updateprofile">Update Profile</Link>
                 </DropdownMenuItem>
@@ -206,6 +210,9 @@ const Nav = () => {
                   <div className="mx-6">{user?.displayName}</div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link to="/updateprofile">Update Profile</Link>
                 </DropdownMenuItem>

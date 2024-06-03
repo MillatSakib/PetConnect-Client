@@ -101,7 +101,7 @@ const UpdateProfile = () => {
               <div>Profile Picture</div>
               <img
                 src={user?.photoURL}
-                className="rounded-full h-28 w-28 ring-4 ring-green-500 my-2 overflow-hidden"
+                className="rounded-full h-28 w-28 ring-4 ring-green-500 my-2 overflow-hidden object-cover"
               ></img>
             </div>
             <div>

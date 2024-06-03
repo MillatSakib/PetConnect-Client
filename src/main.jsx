@@ -15,6 +15,9 @@ import Policy from "./PrivacyPolicy/Policy";
 import LoginProtection from "./RouteProtection/LoginProtection";
 import UserProtection from "./RouteProtection/UserProtection";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
+import DonationCamapigns from "./DonationCampaigns/DonationCamapigns";
+import PetListing from "./PetListing/PetListing";
+import AdminProtection from "./RouteProtection/AdminProtection";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +31,10 @@ const router = createBrowserRouter([
             <UpdateProfile></UpdateProfile>
           </UserProtection>
         ),
+      },
+      {
+        path: "/dashboard",
+        element: <AdminProtection></AdminProtection>,
       },
       {
         path: "/login",
@@ -52,6 +59,23 @@ const router = createBrowserRouter([
       {
         path: "/policy",
         element: <Policy></Policy>,
+      },
+      {
+        path: "/donationCampaings",
+        element: (
+          <UserProtection>
+            <DonationCamapigns></DonationCamapigns>
+          </UserProtection>
+        ),
+      },
+
+      {
+        path: "/petListing",
+        element: (
+          <UserProtection>
+            <PetListing></PetListing>
+          </UserProtection>
+        ),
       },
     ],
   },
