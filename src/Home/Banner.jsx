@@ -1,16 +1,13 @@
 import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
+import image1 from "/Banner/1.jpg";
+import image2 from "/Banner/2.jpg";
+import image3 from "/Banner/3.jpg";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import "./styles.css";
-
-// import required modules
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 
 export default function Banner() {
@@ -21,7 +18,7 @@ export default function Banner() {
         effect={"fade"}
         loop={true}
         autoplay={{
-          delay: 2500,
+          delay: 3500,
           disableOnInteraction: false,
         }}
         navigation={true}
@@ -32,16 +29,13 @@ export default function Banner() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img src={image1} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <img src={image2} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          <img src={image3} />
         </SwiperSlide>
       </Swiper>
     </>
