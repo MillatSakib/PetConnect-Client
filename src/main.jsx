@@ -12,6 +12,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import ErrorPage from "./ErrorPage/ErrorPage";
 import Policy from "./PrivacyPolicy/Policy";
+import LoginProtection from "./RouteProtection/LoginProtection";
+import UserProtection from "./RouteProtection/UserProtection";
+import UpdateProfile from "./UpdateProfile/UpdateProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,12 +22,28 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
+        path: "/updateprofile",
+        element: (
+          <UserProtection>
+            <UpdateProfile></UpdateProfile>
+          </UserProtection>
+        ),
+      },
+      {
         path: "/login",
-        element: <Login></Login>,
+        element: (
+          <LoginProtection>
+            <Login></Login>
+          </LoginProtection>
+        ),
       },
       {
         path: "/register",
-        element: <Register></Register>,
+        element: (
+          <LoginProtection>
+            <Register></Register>
+          </LoginProtection>
+        ),
       },
       {
         path: "/terms&condition",
