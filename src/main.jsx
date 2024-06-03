@@ -18,6 +18,7 @@ import UpdateProfile from "./UpdateProfile/UpdateProfile";
 import DonationCamapigns from "./DonationCampaigns/DonationCamapigns";
 import PetListing from "./PetListing/PetListing";
 import AdminProtection from "./RouteProtection/AdminProtection";
+import Home from "./Home/Home";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             <UpdateProfile></UpdateProfile>
           </UserProtection>
         ),
+      },
+      {
+        path: "/",
+        element: <Home></Home>,
       },
       {
         path: "/dashboard",
