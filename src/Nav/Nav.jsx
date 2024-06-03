@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { AuthContext } from "../AuthProvider";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { CiLogin } from "react-icons/ci";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { user, logOut } = useContext(AuthContext);
+  // console.log(user);
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
@@ -26,81 +39,116 @@ const Nav = () => {
             PetConnect
           </span>
         </NavLink>
-        <button
-          data-collapse-toggle="navbar-default"
-          type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded={isOpen}
-          onClick={toggleNavbar}
-        >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-5 h-5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 17 14"
+        <div className="flex flex-end gap-2 items-center justify-center md:hidden">
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <div className=" select-none">
+                  <Avatar>
+                    <AvatarImage
+                      src={user?.photoURL}
+                      className="object-cover"
+                    />
+                    <AvatarFallback>User</AvatarFallback>
+                  </Avatar>
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>
+                  <div className="mx-6">{user?.displayName}</div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link to="/updateprofile">Update Profile</Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem>
+                  <div
+                    className="w-full flex justify-between items-center font-bold"
+                    onClick={logOut}
+                  >
+                    <button className="flex justify-between w-[full] items-center text-red-500 dark:text-red-400">
+                      <span>Logout</span>
+                    </button>
+                    <span className="font-bold text-xl text-red-500 dark:text-red-400">
+                      <CiLogin />
+                    </span>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            ""
+          )}
+          <button
+            data-collapse-toggle="navbar-default"
+            type="button"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-default"
+            aria-expanded={isOpen}
+            onClick={toggleNavbar}
           >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 1h15M1 7h15M1 13h15"
-            />
-          </svg>
-        </button>
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
         <div
           className={`w-full md:hidden md:w-auto ${isOpen ? "" : "hidden"}`}
           id="navbar-default"
         >
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a
-                href="#"
+              <NavLink
+                to={"/"}
                 className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                 aria-current="page"
               >
                 Home
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
+              <NavLink
+                to={"/petListing"}
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
-                About
-              </a>
+                Pet Listing
+              </NavLink>
             </li>
             <li>
-              <a
-                href="#"
+              <NavLink
+                to={"/donationCampaings"}
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
-                Services
-              </a>
+                Donation Campaings
+              </NavLink>
             </li>
+
             <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Pricing
-              </a>
+              <div className="flex items-center justify-end gap-4">
+                <ModeToggle></ModeToggle>
+                {user ? (
+                  ""
+                ) : (
+                  <NavLink to="/login">
+                    <Button variant={"outline"}>Login</Button>
+                  </NavLink>
+                )}
+              </div>
             </li>
-            <li>
-              <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Contact
-              </a>
-            </li>
-            <div className="flex items-center justify-end gap-4">
-              <ModeToggle></ModeToggle>
-              <Button variant={"outline"}>fsdfasdf</Button>
-            </div>
           </ul>
         </div>
         <div className="justify-center hidden md:flex grow ">
@@ -112,54 +160,83 @@ const Nav = () => {
           >
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-slate-100 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to={"/"}
                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500 md:text-[1.1rem]"
                   aria-current="page"
                 >
                   Home
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to={"/petListing"}
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:text-[1.1rem]"
                 >
-                  About
-                </a>
+                  Pet Listing
+                </NavLink>
               </li>
               <li>
-                <a
-                  href="#"
+                <NavLink
+                  to={"/donationCampaings"}
                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:text-[1.1rem]"
                 >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:text-[1.1rem]"
-                >
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:text-[1.1rem]"
-                >
-                  Contact
-                </a>
+                  Donation Campaings
+                </NavLink>
               </li>
             </ul>
           </div>
         </div>
-        <div className="hidden md:flex items-center justify-end gap-1">
+        <div className="hidden md:flex items-center justify-end gap-2">
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <div className=" select-none">
+                  <Avatar>
+                    <AvatarImage
+                      src={user?.photoURL}
+                      className="object-cover"
+                    />
+                    <AvatarFallback>User</AvatarFallback>
+                  </Avatar>
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>
+                  <div className="mx-6">{user?.displayName}</div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link to="/updateprofile">Update Profile</Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem>
+                  <div
+                    className="w-full flex justify-between items-center font-bold"
+                    onClick={logOut}
+                  >
+                    <button className="flex justify-between w-[full] items-center text-red-500 dark:text-red-400">
+                      <span>Logout</span>
+                    </button>
+                    <span className="font-bold text-xl text-red-500 dark:text-red-500">
+                      <CiLogin />
+                    </span>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            ""
+          )}
+
           <ModeToggle></ModeToggle>
-          <NavLink to="/login">
-            <Button variant={"outline"}>Login</Button>
-          </NavLink>
+          {user ? (
+            ""
+          ) : (
+            <NavLink to="/login">
+              <Button variant={"outline"}>Login</Button>
+            </NavLink>
+          )}
         </div>
       </div>
     </nav>
