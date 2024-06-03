@@ -41,12 +41,12 @@ const Footer = () => {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <NavLink to="/" className="hover:underline">
+                  <NavLink to="/petListing" className="hover:underline">
                     Pet Listing
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/" className="hover:underline">
+                  <NavLink to="/donationCampaings" className="hover:underline">
                     Donation Campaigns
                   </NavLink>
                 </li>
