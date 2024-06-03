@@ -65,7 +65,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white">
+    <div>
       <div className="flex flex-col lg:flex-row-reverse justify-center items-center lg:mx-10 gap-8 my-16">
         <div>
           <h2 className="font-bold text-3xl md:text-5xl mx-10">
