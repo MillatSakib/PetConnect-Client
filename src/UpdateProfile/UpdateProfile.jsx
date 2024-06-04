@@ -106,7 +106,7 @@ const UpdateProfile = () => {
                 htmlFor="name"
                 className="block text-sm font-medium text-gray-900 dark:text-white"
               >
-                Your email
+                Your Name
               </label>
               <input
                 type="text"
@@ -151,11 +151,6 @@ const UpdateProfile = () => {
                 <span className="sr-only">Loading...</span>
               </button>
             )}
-            {/* <input
-              type="submit"
-              value={"Update Profile"}
-              className="bg-green-500 text-white dark:bg-green-400 px-10 py-2 rounded-full hover:bg-green-600 active:bg-green-700 dark:hover:bg-green-500 dark:active:bg-green-600"
-            ></input> */}
           </div>
         </form>
       </div>
