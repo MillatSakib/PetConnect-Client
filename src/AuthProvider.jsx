@@ -17,6 +17,7 @@ import axios from "axios";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+  const [updateProfileLoading, setUpdateProfileLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [routeState, setRouteState] = useState("/");
@@ -32,6 +33,7 @@ const AuthProvider = ({ children }) => {
       photoURL: imgUrl,
     })
       .then(() => {
+        setUpdateProfileLoading(false);
         let temp = componentRender;
         setComponentRender(!temp);
         toast.success("User Profile updated successfully", {
@@ -42,6 +44,7 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         const errorMessage = error.message;
+        setUpdateProfileLoading(false);
         toast.error(errorMessage, {
           position: "bottom-right",
         });
@@ -163,6 +166,8 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     setComponentRender,
     componentRender,
+    updateProfileLoading,
+    setUpdateProfileLoading,
   };
 
   useEffect(() => {
