@@ -65,12 +65,12 @@ const Footer = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <a
+                  <NavLink
                     href="https://www.instagram.com/rescuepetconnect/"
                     className="hover:underline"
                   >
                     Instagram
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
