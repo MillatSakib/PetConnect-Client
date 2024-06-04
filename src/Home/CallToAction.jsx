@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import image from "/Banner/calltoaction.jpg";
-import { Parallax, Background } from "react-parallax";
+import { Parallax } from "react-parallax";
 import { AuthContext } from "@/AuthProvider";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const CallToAction = () => {
   const { user } = useContext(AuthContext);
   return (
     <div className="">
-      <h2 className="text-3xl md:text-4xl lg:text-5xl mt-4 mb-4 md:mb-6 lg:mb-8 font-bold text-center">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl mt-4 mb-4 md:mb-6 lg:mb-8 font-bold text-center dark:text-orange-400 text-orange-500">
         Join the PetConnect Family
       </h2>
       <p className="w-[95%] md:w-[80%] lg:w-[65%] mx-auto text-center">
@@ -29,10 +29,10 @@ const CallToAction = () => {
           className="h-[80vh] object-cover"
         >
           <div className="h-[100vh] w-full flex items-center justify-center flex-col bg-black z-50 dark:bg-opacity-45 bg-opacity-35 text-slate-50 dark:text-slate-300">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold my-4 text-center">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold my-4 text-center dark:text-orange-500 text-orange-600">
               Adopot A Pet
             </h3>
-            <h4 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">
+            <h4 className="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4 dark:text-orange-400 text-orange-500">
               Find a new furry Friend
             </h4>
             {user ? (
@@ -48,7 +48,7 @@ const CallToAction = () => {
                 <div className="text-center my-6">
                   <Link
                     to="/petListing"
-                    className="bg-green-500 dark:bg-green-600 dark:hover:bg-green-700 dark:active:bg-green-800 hover:bg-green-600 active:bg-green-700 px-6 py-2 rounded-full ease-in-out duration-300"
+                    className="dark:hover:bg-orange-700 dark:active:bg-orange-800 hover:bg-orange-600 active:bg-orange-700 px-6 py-2 rounded-full ease-in-out duration-300 dark:bg-orange-500 font-bold bg-orange-500"
                   >
                     Adopt A Pet
                   </Link>
@@ -67,7 +67,7 @@ const CallToAction = () => {
                 <div className="text-center my-6">
                   <Link
                     to="/login"
-                    className="bg-green-500 dark:bg-green-600 dark:hover:bg-green-700 dark:active:bg-green-800 hover:bg-green-600 active:bg-green-700 px-6 py-2 rounded-full ease-in-out duration-300"
+                    className="dark:hover:bg-orange-700 dark:active:bg-orange-800 hover:bg-orange-600 active:bg-orange-700 px-6 py-2 rounded-full ease-in-out duration-300 dark:bg-orange-500 font-bold bg-orange-500"
                   >
                     Login
                   </Link>

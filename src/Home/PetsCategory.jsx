@@ -11,7 +11,7 @@ const PetsCategory = () => {
   return (
     <div className="my-10 md:my-16 lg:my-20">
       {" "}
-      <h2 className="text-center my-6 lg:my-10 text-2xl md:text-3xl lg:text-4xl font-bold">
+      <h2 className="text-center dark:text-orange-400 text-orange-500 my-6 lg:my-10 text-2xl md:text-3xl lg:text-4xl font-bold">
         OUR PETS CATEGORY
       </h2>
       <p className="mb-10 px-8 md:mx-20 lg:mx-auto max-w-[1100px] text-center mx-auto">
