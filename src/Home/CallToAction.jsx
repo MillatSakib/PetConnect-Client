@@ -26,7 +26,7 @@ const CallToAction = () => {
           bgImage={image}
           bgImageAlt="the dog"
           strength={-200}
-          className="h-[80vh] bg-object-cover"
+          className="h-[80vh] object-cover"
         >
           <div className="h-[100vh] w-full flex items-center justify-center flex-col bg-black z-50 dark:bg-opacity-45 bg-opacity-35 text-slate-50 dark:text-slate-300">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold my-4 text-center">
