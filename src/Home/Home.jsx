@@ -1,11 +1,13 @@
 import Banner from "./Banner";
+import CallToAction from "./CallToAction";
 import PetsCategory from "./PetsCategory";
 
 const Home = () => {
   return (
-    <div className="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white">
+    <div className="">
       <Banner></Banner>
       <PetsCategory></PetsCategory>
+      <CallToAction></CallToAction>
     </div>
   );
 };
