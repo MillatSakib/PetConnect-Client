@@ -30,7 +30,7 @@ const PetListing = () => {
   useEffect(() => {
     setLoading(false);
     axios
-      .post("http://localhost:5000/petListing", apiBody)
+      .post("https://petconnect-kappa.vercel.app/petListing", apiBody)
       .then((response) => {
         setLoading(true);
         setData(response.data);
@@ -44,7 +44,7 @@ const PetListing = () => {
   const handleSearchClick = () => {
     setLoading(false);
     axios
-      .post("http://localhost:5000/petListing", apiBody)
+      .post("https://petconnect-kappa.vercel.app/petListing", apiBody)
       .then((response) => {
         setLoading(true);
         setData(response.data);
@@ -54,7 +54,6 @@ const PetListing = () => {
         console.error("Error fetching data:", error);
       });
   };
-  console.log(data);
 
   return (
     <div className="mb-32">

@@ -54,10 +54,22 @@ const AuthProvider = ({ children }) => {
   const logInUser = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        axios.post("https://bikolpo.vercel.app/jwt", userCredential, {
+        const credential = {
+          email: userCredential.user.email,
+          photoURL: userCredential.user.photoURL,
+          uid: userCredential.user.uid,
+          displayName: userCredential.user.displayName,
+        };
+        axios.post("https://petconnect-kappa.vercel.app/userSign", credential, {
           withCredentials: true,
         });
         const user = userCredential.user;
+        // console.log(
+        //   userCredential.user.email,
+        //   userCredential.user.photoURL,
+        //   userCredential.user.uid,
+        //   userCredential.user.displayName
+        // );
         let temp = componentRender;
         setComponentRender(!temp);
         toast.success("Successfully logged in!", {
@@ -80,7 +92,13 @@ const AuthProvider = ({ children }) => {
   const GoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
-        axios.post("https://bikolpo.vercel.app/jwt", result, {
+        const credential = {
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+          uid: result.user.uid,
+          displayName: result.user.displayName,
+        };
+        axios.post("https://petconnect-kappa.vercel.app/userSign", credential, {
           withCredentials: true,
         });
         let temp = componentRender;
@@ -105,9 +123,19 @@ const AuthProvider = ({ children }) => {
   const githubSignIn = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
-        axios.post("https://bikolpo.vercel.app/jwt", result, {
-          withCredentials: true,
-        });
+        const credentials = {
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+          uid: result.user.uid,
+          displayName: result.user.displayName,
+        };
+        axios.post(
+          "https://petconnect-kappa.vercel.app/userSign",
+          credentials,
+          {
+            withCredentials: true,
+          }
+        );
         let temp = componentRender;
         setComponentRender(!temp);
         const credential = GithubAuthProvider.credentialFromResult(result);
@@ -141,7 +169,7 @@ const AuthProvider = ({ children }) => {
       hideProgressBar: false,
     });
     axios.post(
-      "https://bikolpo.vercel.app/logout",
+      "https://petconnect-kappa.vercel.app/userSign",
       {},
       {
         withCredentials: true,

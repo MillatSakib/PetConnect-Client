@@ -19,6 +19,9 @@ import DonationCamapigns from "./DonationCampaigns/DonationCamapigns";
 import PetListing from "./PetListing/PetListing";
 import AdminProtection from "./RouteProtection/AdminProtection";
 import Home from "./Home/Home";
+import PetDetails from "./PetDetails/PetDetails";
+import axios from "axios";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,20 +70,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/donationCampaings",
-        element: (
-          <UserProtection>
-            <DonationCamapigns></DonationCamapigns>
-          </UserProtection>
-        ),
+        element: <DonationCamapigns></DonationCamapigns>,
       },
 
       {
         path: "/petListing",
-        element: (
-          <UserProtection>
-            <PetListing></PetListing>
-          </UserProtection>
-        ),
+        element: <PetListing></PetListing>,
+      },
+      {
+        path: "/petDetails/:id",
+        loader: ({ params }) =>
+          axios.get(
+            `https://petconnect-kappa.vercel.app/petDetails/${params.id}`
+          ),
+        element: <PetDetails></PetDetails>,
       },
     ],
   },
