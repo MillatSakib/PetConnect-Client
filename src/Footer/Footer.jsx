@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="https://flowbite.com/" className="flex items-center">
+            <NavLink to="/" className="flex items-center">
               <img
                 src="https://raw.githubusercontent.com/MillatSakib/img-src/main/logo.png"
                 className="h-8 me-3"
@@ -15,7 +15,7 @@ const Footer = () => {
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 PetConnect
               </span>
-            </a>
+            </NavLink>
             <div className="py-4">
               <div className="my-2">
                 <div className="text-xl font-semibold">Contact Us:</div>

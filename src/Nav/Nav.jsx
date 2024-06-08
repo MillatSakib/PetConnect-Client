@@ -22,6 +22,7 @@ const Nav = () => {
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
+  // console.log(user.uid);
 
   return (
     <nav className=" bg-slate-100 border-gray-200 dark:bg-gray-900">
