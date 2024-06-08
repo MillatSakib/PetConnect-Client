@@ -23,20 +23,20 @@ const SkeletonCard = ({ data }) => {
             </CardTitle>
             <CardDescription>
               <h3 className="text-xl font-bold lg:text-2xl mt-4">
-                <Skeleton className="h-14 w-[60%] bg-slate-200 dark:bg-slate-800" />
+                <Skeleton className="h-10 w-[60%] bg-slate-200 dark:bg-slate-800" />
               </h3>
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="my-4">
-              <Skeleton className="h-8 w-[80%] bg-slate-200 dark:bg-slate-800" />
+            <div className="my-2">
+              <Skeleton className="h-4 w-[80%] bg-slate-200 dark:bg-slate-800" />
             </div>
             <div className="font-bold">
-              <Skeleton className="h-10 w-[80%] bg-slate-200 dark:bg-slate-800" />
+              <Skeleton className="h-4 w-[80%] bg-slate-200 dark:bg-slate-800" />
             </div>
           </CardContent>
           <CardFooter>
-            <Skeleton className="h-12 w-full bg-slate-200 dark:bg-slate-800" />
+            <Skeleton className="h-8 w-full bg-slate-200 dark:bg-slate-800" />
           </CardFooter>
         </Card>
       </div>

@@ -22,15 +22,22 @@ import PetCard from "@/PetListing/PetCard";
 const PetDetails = () => {
   const data = useLoaderData().data;
   const [randomData, setRandomData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [skeletonArray, setSkeletonArray] = useState([{}, {}, {}]);
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`https://petconnect-kappa.vercel.app/randomPet/${data?.petCategory}`)
       .then((response) => {
         setRandomData(response.data);
+        setSkeletonArray([]);
+        setLoading(false);
         // setLoading(false);
       })
       .catch((error) => {
         setRandomData([]);
+        setSkeletonArray([]);
+        setLoading(false);
         console.error("Error fetching random pets:", error);
         // setLoading(false);
       });
@@ -194,9 +201,13 @@ const PetDetails = () => {
             The Pets you can like
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[95%] md:w-[80%] lg:w-[85%] mx-auto mt-6 md:mt-8 lg:mt-12">
-            {randomData.map((data, index) => (
-              <PetCard data={data} key={index}></PetCard>
-            ))}
+            {loading
+              ? skeletonArray.map((index) => (
+                  <SkeletonCard key={index}></SkeletonCard>
+                ))
+              : randomData.map((data, index) => (
+                  <PetCard data={data} key={index}></PetCard>
+                ))}
           </div>
         </div>
       </div>
