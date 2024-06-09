@@ -22,6 +22,16 @@ import PetDetails from "./PetDetails/PetDetails";
 import axios from "axios";
 import DonataionDetails from "./DonationDetails/DonataionDetails";
 import CustomSideBar from "./DashBord/CustomSideBar";
+import AddPet from "./DashBord/User/AddPet";
+import MyDonation from "./DashBord/User/MyDonation";
+import MyPets from "./DashBord/User/MyPets";
+import AdoptionRequest from "./DashBord/User/AdoptionRequest";
+import DonationCampain from "./DashBord/User/DonationCampain";
+import AddDonationCampain from "./DashBord/User/AddDonationCampain";
+import AllPet from "./DashBord/Admin/AllPet";
+import AllUser from "./DashBord/Admin/AllUser";
+import AllDonation from "./DashBord/Admin/AllDonation";
+import UpdateInfo from "./DashBord/User/UpdateInfo";
 axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
@@ -96,7 +106,53 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <CustomSideBar></CustomSideBar>,
+    element: (
+      <UserProtection>
+        <CustomSideBar></CustomSideBar>
+      </UserProtection>
+    ),
+    children: [
+      {
+        path: "/dashboard/addPet",
+        element: <AddPet></AddPet>,
+      },
+      {
+        path: "/dashboard/myDonation",
+        element: <MyDonation></MyDonation>,
+      },
+      {
+        path: "/dashboard/myAddedPets",
+        element: <MyPets></MyPets>,
+      },
+      {
+        path: "/dashboard/createDonationCampain",
+        element: <AddDonationCampain></AddDonationCampain>,
+      },
+      {
+        path: "/dashboard/donationCampain",
+        element: <DonationCampain></DonationCampain>,
+      },
+      {
+        path: "/dashboard/adoptionRequest",
+        element: <AdoptionRequest></AdoptionRequest>,
+      },
+      {
+        path: "/dashboard/allPet",
+        element: <AllPet></AllPet>,
+      },
+      {
+        path: "/dashboard/allUsers",
+        element: <AllUser></AllUser>,
+      },
+      {
+        path: "/dashboard/allDonaiton",
+        element: <AllDonation></AllDonation>,
+      },
+      {
+        path: "/dashboard/update/:id",
+        element: <UpdateInfo></UpdateInfo>,
+      },
+    ],
   },
 ]);
 

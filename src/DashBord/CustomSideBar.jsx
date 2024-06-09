@@ -43,9 +43,9 @@ export default function CustomSideBar() {
       .then((data) => setAccess(data.data))
       .catch((error) => setAccess({ message: "forbidden access" }));
   }, []);
-
+  console.log(access);
   return (
-    <div className="flex min-h-[100vh]">
+    <div className="flex min-h-[100vh] h-[120vh]">
       <Sidebar
         aria-label="Sidebar with content separator example"
         className={`fixed top-0 left-0 z-40 h-full w-64 transition-transform transform bg-gray-800 ${
@@ -70,7 +70,7 @@ export default function CustomSideBar() {
                 </div>
               </Sidebar.Item>
             </Link>
-            <Link to="/">
+            <Link to="/dashboard/addPet">
               <Sidebar.Item>
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <IoAdd />
@@ -78,7 +78,7 @@ export default function CustomSideBar() {
                 </div>
               </Sidebar.Item>
             </Link>
-            <Link to="/">
+            <Link to="/dashboard/myDonation">
               <Sidebar.Item>
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <FaDonate />
@@ -86,7 +86,7 @@ export default function CustomSideBar() {
                 </div>
               </Sidebar.Item>
             </Link>
-            <Link to="/">
+            <Link to="/dashboard/myAddedPets">
               <Sidebar.Item>
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <VscDiffAdded />
@@ -94,7 +94,7 @@ export default function CustomSideBar() {
                 </div>
               </Sidebar.Item>
             </Link>
-            <Link to="/">
+            <Link to="/dashboard/adoptionRequest">
               <Sidebar.Item>
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <GrUploadOption />
@@ -102,7 +102,7 @@ export default function CustomSideBar() {
                 </div>
               </Sidebar.Item>
             </Link>
-            <Link to="/">
+            <Link to="/dashboard/donationCampain">
               <Sidebar.Item>
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <LiaDonateSolid />
@@ -110,7 +110,7 @@ export default function CustomSideBar() {
                 </div>
               </Sidebar.Item>
             </Link>
-            <Link to="/">
+            <Link to="/dashboard/createDonationCampain">
               <Sidebar.Item>
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <BiSolidDonateBlood />
@@ -125,7 +125,7 @@ export default function CustomSideBar() {
                 Admin Action
               </div>
               <Sidebar.ItemGroup>
-                <Link to="/">
+                <Link to="/dashboard/allUsers">
                   <Sidebar.Item>
                     <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                       <FaUserAlt />
@@ -133,7 +133,7 @@ export default function CustomSideBar() {
                     </div>
                   </Sidebar.Item>
                 </Link>
-                <Link to="/">
+                <Link to="/dashboard/allPet">
                   <Sidebar.Item>
                     <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                       <MdOutlinePets />
@@ -141,7 +141,7 @@ export default function CustomSideBar() {
                     </div>
                   </Sidebar.Item>
                 </Link>
-                <Link to="/">
+                <Link to="/dashboard/allDonaiton">
                   <Sidebar.Item>
                     <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                       <BiDonateBlood />

@@ -99,7 +99,9 @@ const PetDetails = () => {
             </div>
             <div className="mt-6 max-w-[900px]">
               <div>Description:</div>
-              {data?.longDescription}
+              <div
+                dangerouslySetInnerHTML={{ __html: data?.longDescription }}
+              />{" "}
             </div>
             <div className="mt-6 max-w-[900px]">
               <div>Summary:</div>
