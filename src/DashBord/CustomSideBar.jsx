@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react";
 import { BiBuoy } from "react-icons/bi";
 import {
@@ -14,16 +14,38 @@ import {
 } from "react-icons/hi";
 import { FaBars } from "react-icons/fa";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Link, Outlet } from "react-router-dom";
+import { IoMdHome } from "react-icons/io";
+import { IoAdd } from "react-icons/io5";
+import { VscDiffAdded } from "react-icons/vsc";
+import { GrUploadOption } from "react-icons/gr";
+import { BiSolidDonateBlood } from "react-icons/bi";
+import { LiaDonateSolid } from "react-icons/lia";
+import { FaDonate } from "react-icons/fa";
+import { AuthContext } from "@/AuthProvider";
+import axios from "axios";
+import { FaUserAlt } from "react-icons/fa";
+import { BiDonateBlood } from "react-icons/bi";
+import { MdOutlinePets } from "react-icons/md";
 
 export default function CustomSideBar() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [access, setAccess] = useState({});
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+  const { user } = useContext(AuthContext);
+  useEffect(() => {
+    axios
+      .get("https://petconnect-kappa.vercel.app/verifyAdmin", {
+        withCredentials: true,
+      })
+      .then((data) => setAccess(data.data))
+      .catch((error) => setAccess({ message: "forbidden access" }));
+  }, []);
 
   return (
-    <div className="flex h-screen">
+    <div className="flex min-h-[100vh]">
       <Sidebar
         aria-label="Sidebar with content separator example"
         className={`fixed top-0 left-0 z-40 h-full w-64 transition-transform transform bg-gray-800 ${
@@ -32,44 +54,106 @@ export default function CustomSideBar() {
       >
         <Sidebar.Items>
           <Sidebar.ItemGroup>
-            <Sidebar.Item href="#" icon={HiChartPie}>
-              Dashboard
+            <Sidebar.Item href="/">
+              <div className="flex items-center justify-center gap-1">
+                <img src="https://raw.githubusercontent.com/MillatSakib/img-src/main/logo.png" />
+                <span className="text-xl md:text-2xl lg:text-3xl font-bold">
+                  PetConnect
+                </span>
+              </div>
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiViewBoards}>
-              Kanban
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiInbox}>
-              Inbox
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiUser}>
-              Users
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiShoppingBag}>
-              Products
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiArrowSmRight}>
-              Sign In
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiTable}>
-              Sign Up
-            </Sidebar.Item>
+            <Link to="/">
+              <Sidebar.Item>
+                <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                  <IoMdHome />
+                  <span>Home</span>
+                </div>
+              </Sidebar.Item>
+            </Link>
+            <Link to="/">
+              <Sidebar.Item>
+                <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                  <IoAdd />
+                  <span>Add Pet</span>
+                </div>
+              </Sidebar.Item>
+            </Link>
+            <Link to="/">
+              <Sidebar.Item>
+                <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                  <FaDonate />
+                  <span>My Donation</span>
+                </div>
+              </Sidebar.Item>
+            </Link>
+            <Link to="/">
+              <Sidebar.Item>
+                <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                  <VscDiffAdded />
+                  <span> My Added Pets</span>
+                </div>
+              </Sidebar.Item>
+            </Link>
+            <Link to="/">
+              <Sidebar.Item>
+                <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                  <GrUploadOption />
+                  <span> Adoption Requests</span>
+                </div>
+              </Sidebar.Item>
+            </Link>
+            <Link to="/">
+              <Sidebar.Item>
+                <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                  <LiaDonateSolid />
+                  <span>My Donation Campains</span>
+                </div>
+              </Sidebar.Item>
+            </Link>
+            <Link to="/">
+              <Sidebar.Item>
+                <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                  <BiSolidDonateBlood />
+                  <span> Create Donation Campain</span>
+                </div>
+              </Sidebar.Item>
+            </Link>
           </Sidebar.ItemGroup>
-          <Sidebar.ItemGroup>
-            <Sidebar.Item href="#" icon={HiChartPie}>
-              Upgrade to Pro
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiViewBoards}>
-              Documentation
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={BiBuoy}>
-              Help
-            </Sidebar.Item>
-          </Sidebar.ItemGroup>
-          <Sidebar.ItemGroup>
-            <Sidebar.Item href="#" icon={HiChartPie}>
-              Upgrade to Pro
-            </Sidebar.Item>
-          </Sidebar.ItemGroup>
+          {access?.message === "have access" ? (
+            <>
+              <div className="mt-4 md:mt-6 font-semibold text-xl text-right">
+                Admin Action
+              </div>
+              <Sidebar.ItemGroup>
+                <Link to="/">
+                  <Sidebar.Item>
+                    <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                      <FaUserAlt />
+                      <span> All Users</span>
+                    </div>
+                  </Sidebar.Item>
+                </Link>
+                <Link to="/">
+                  <Sidebar.Item>
+                    <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                      <MdOutlinePets />
+                      <span> All Pets</span>
+                    </div>
+                  </Sidebar.Item>
+                </Link>
+                <Link to="/">
+                  <Sidebar.Item>
+                    <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                      <BiDonateBlood />
+                      <span>All Donation</span>
+                    </div>
+                  </Sidebar.Item>
+                </Link>
+              </Sidebar.ItemGroup>
+            </>
+          ) : (
+            ""
+          )}
         </Sidebar.Items>
       </Sidebar>
 
@@ -87,7 +171,9 @@ export default function CustomSideBar() {
             <ModeToggle></ModeToggle>
           </div>
         </div>
-
+        <div>
+          <Outlet></Outlet>
+        </div>
         {/* Your main content goes here */}
       </div>
     </div>

@@ -21,7 +21,7 @@ import Home from "./Home/Home";
 import PetDetails from "./PetDetails/PetDetails";
 import axios from "axios";
 import DonataionDetails from "./DonationDetails/DonataionDetails";
-import DashbordLayout from "./Layout/DashbordLayout";
+import CustomSideBar from "./DashBord/CustomSideBar";
 axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
@@ -96,7 +96,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashbordLayout></DashbordLayout>,
+    element: <CustomSideBar></CustomSideBar>,
   },
 ]);
 
