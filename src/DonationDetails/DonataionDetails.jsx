@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 import {
   Dialog,
   DialogContent,

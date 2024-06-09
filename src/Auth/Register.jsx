@@ -54,10 +54,13 @@ const Register = () => {
     formData.append("image", imgFile);
 
     try {
-      const res = await axios.post(image_hosting_api, formData);
-      if (res.data.success) {
-        // console.log(res);
-        const imgUrl = res.data.data.url;
+      const res = await fetch(image_hosting_api, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        const imgUrl = data.data.url;
 
         // Register user with Firebase Auth
         await registerUser(email, password);

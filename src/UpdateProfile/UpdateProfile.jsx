@@ -4,7 +4,6 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { AuthContext } from "../AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 const UpdateProfile = () => {
   const [loading, setLoading] = useState(false);
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -24,13 +23,26 @@ const UpdateProfile = () => {
     formData.append("image", imgFile);
     if (imgFile) {
       try {
-        const res = await axios.post(image_hosting_api, formData);
-        if (res?.data?.success) {
-          const imgUrl = res.data.data.url;
-          updateUserProfile(name, imgUrl);
+        const res = await fetch(image_hosting_api, {
+          method: "POST",
+          body: formData,
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success) {
+            const imgUrl = data.data.url;
+            updateUserProfile(name, imgUrl);
+          }
+        } else {
+          const errorMessage = `HTTP error! Status: ${res.status}`;
+          console.error(errorMessage);
+          toast.error(errorMessage, {
+            position: "bottom-right",
+          });
         }
       } catch (error) {
         const errorMessage = error.message;
+        console.error(error);
         toast.error(errorMessage, {
           position: "bottom-right",
         });

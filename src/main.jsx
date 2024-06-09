@@ -22,6 +22,7 @@ import Home from "./Home/Home";
 import PetDetails from "./PetDetails/PetDetails";
 import axios from "axios";
 import DonataionDetails from "./DonationDetails/DonataionDetails";
+axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
   {
