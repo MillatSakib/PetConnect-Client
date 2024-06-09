@@ -21,6 +21,7 @@ import AdminProtection from "./RouteProtection/AdminProtection";
 import Home from "./Home/Home";
 import PetDetails from "./PetDetails/PetDetails";
 import axios from "axios";
+import DonataionDetails from "./DonationDetails/DonataionDetails";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,14 @@ const router = createBrowserRouter([
             `https://petconnect-kappa.vercel.app/petDetails/${params.id}`
           ),
         element: <PetDetails></PetDetails>,
+      },
+      {
+        path: "/donationDetails/:id",
+        loader: ({ params }) =>
+          axios.get(
+            `https://petconnect-kappa.vercel.app/donationDetails/${params.id}`
+          ),
+        element: <DonataionDetails></DonataionDetails>,
       },
     ],
   },

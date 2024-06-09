@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import PetCard from "./PetCard";
 import SkeletonCard from "./SkeletonCard";
+import { useInView } from "react-intersection-observer";
 
 const PetListing = () => {
   const [data, setData] = useState([]);

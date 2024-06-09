@@ -18,15 +18,16 @@ import { Label } from "@/components/ui/label";
 import { AuthContext } from "@/AuthProvider";
 import SkeletonCard from "@/PetListing/SkeletonCard";
 import PetCard from "@/PetListing/PetCard";
+import DonationCard from "@/DonationCampaigns/DonationCard";
 
-const PetDetails = () => {
+const DonataionDetails = () => {
   const data = useLoaderData().data;
   const [randomData, setRandomData] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://petconnect-kappa.vercel.app/randomPet/${data?.petCategory}`)
+      .get(`https://petconnect-kappa.vercel.app/randomDoanation`)
       .then((response) => {
         setRandomData(response.data);
         setLoading(false);
@@ -39,8 +40,11 @@ const PetDetails = () => {
         // setLoading(false);
       });
   }, [data?.petCategory]);
-  const [isOpen, setIsOpen] = useState(false);
 
+  console.log(data);
+
+  const [isOpen, setIsOpen] = useState(false);
+  //   console.log(randomData);
   const { user } = useContext(AuthContext);
   const handleAdoption = (e) => {
     e.preventDefault();
@@ -69,7 +73,7 @@ const PetDetails = () => {
       })
 
       .catch((error) => {
-        toast.error(error?.response?.data.message.toUpperCase(), {
+        toast.error(error?.response?.data?.message, {
           position: "bottom-right",
         });
       });
@@ -77,47 +81,49 @@ const PetDetails = () => {
   return (
     <div>
       <div className="mx-4 md:mx-6 lg:mx-8 my-18 md:my-20 lg:my-22">
-        <div className="flex flex-col md:flex-row gap-6 md:gap-10 lg:gap-12 items-center justify-center">
-          <div className="w-full md:w-[80vw] lg:w-[40vw] max-h-[600px]">
+        <div className="flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-12 items-center justify-center">
+          <div className="w-full md:w-[80vw] lg:w-[40vw] max-h-[600px] min-w-[300px] md:min-w-[400px] lg:min-w-[650px]">
             <img
-              src={data?.petImgURL}
-              className="rounded-xl object-cover w-full md:w-[80vw] lg:w-[40vw] max-h-[600px]"
+              src={data?.petPicture}
+              className="rounded-xl object-cover w- max-h-[600px] "
             />
           </div>
           <div>
-            <h2 className="text-xl lg:text-[1.3rem] mb-6 font-semibold dark:opacity-65 opacity-45">
-              CATEGORY: {data?.petCategory.toUpperCase()}
-            </h2>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-              Name: {data?.petName}
+              Name: {data?.name}
             </h2>
             <div className="dark:opacity-65 opacity-75">
-              Age: {data?.petAge}
-            </div>
-            <div className="dark:opacity-65 opacity-75">
-              Location: {data?.petLocation}
-            </div>
-            <div className="mt-6 max-w-[900px]">
-              <div>Description:</div>
+              <div className="mt-2 md:mt-4 text-xl md:text-2xl lg:text-3xl font-bold">
+                Reason For appling Donation
+              </div>{" "}
               {data?.longDescription}
             </div>
-            <div className="mt-6 max-w-[900px]">
-              <div>Summary:</div>
+            <div className="dark:opacity-65 opacity-75">
+              <div className="mt-2 md:mt-4 text-xl md:text-2xl lg:text-3xl font-bold">
+                Summery
+              </div>{" "}
               {data?.shortDescription}
+            </div>
+
+            <div className="mt-6 max-w-[900px]">
+              <span>Maximum Donation:</span>&nbsp; ${data?.maxDonation}
+            </div>
+            <div className=" max-w-[900px]">
+              <span>Total Donated:</span>&nbsp; ${data?.totalDonation}
             </div>
             <div className="mt-2 md:mt-4">
               {user ? (
-                data.adopted ? (
+                data.pause ? (
                   <span className="hover:cursor-not-allowed select-none">
                     <Button variant="MyTheme" disabled>
-                      Adopted
+                      Donation no longer available
                     </Button>
                   </span>
                 ) : (
                   <Dialog open={isOpen} onOpenChange={setIsOpen}>
                     <DialogTrigger asChild>
                       <Button variant="MyTheme" onClick={() => setIsOpen(true)}>
-                        Sent Adoption Request
+                        Donate
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
@@ -187,7 +193,7 @@ const PetDetails = () => {
                 )
               ) : (
                 <Link to="/login">
-                  <Button variant="MyTheme">Login to adopt</Button>
+                  <Button variant="MyTheme">Login to Donate</Button>
                 </Link>
               )}
             </div>
@@ -195,9 +201,9 @@ const PetDetails = () => {
         </div>
         <div>
           <h2 className="mt-6 md:mt-8 lg:mt-10 text-2xl md:text-3xl lg:text-4xl font-extrabold text-orange-500">
-            The Pets you can like
+            You Can Donate Also
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[95%] md:w-[80%] lg:w-[85%] mx-auto mt-6 md:mt-8 lg:mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[95%] md:w-[100%] lg:w-[85%] mx-auto mt-6 md:mt-8 lg:mt-12">
             {loading ? (
               <>
                 <SkeletonCard></SkeletonCard>
@@ -206,7 +212,7 @@ const PetDetails = () => {
               </>
             ) : (
               randomData.map((data, index) => (
-                <PetCard data={data} key={index}></PetCard>
+                <DonationCard data={data} key={index}></DonationCard>
               ))
             )}
           </div>
@@ -216,4 +222,4 @@ const PetDetails = () => {
   );
 };
 
-export default PetDetails;
+export default DonataionDetails;

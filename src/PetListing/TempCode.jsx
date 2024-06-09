@@ -2,20 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer"; // Import useInView hook
 
 const TempCode = () => {
-  const [showAlert, setShowAlert] = useState(false); // State for alert visibility
-
-  const { ref, inView } = useInView({ threshold: 0.5 }); // Track visibility with 50% threshold
-
-  // Use useEffect to trigger alert when inView changes
+  const [showAlert, setShowAlert] = useState(false);
+  const { ref, inView } = useInView({ threshold: 0.5 });
   useEffect(() => {
     if (inView) {
       handleAlert();
     }
   }, [inView]);
-
   const handleAlert = () => {
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 3000); // Hide alert after 3 seconds
+    setTimeout(() => setShowAlert(false), 3000);
   };
 
   return (
