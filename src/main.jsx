@@ -17,11 +17,11 @@ import UserProtection from "./RouteProtection/UserProtection";
 import UpdateProfile from "./UpdateProfile/UpdateProfile";
 import DonationCamapigns from "./DonationCampaigns/DonationCamapigns";
 import PetListing from "./PetListing/PetListing";
-import AdminProtection from "./RouteProtection/AdminProtection";
 import Home from "./Home/Home";
 import PetDetails from "./PetDetails/PetDetails";
 import axios from "axios";
 import DonataionDetails from "./DonationDetails/DonataionDetails";
+import DashbordLayout from "./Layout/DashbordLayout";
 axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
@@ -42,10 +42,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-      {
-        path: "/dashboard",
-        element: <AdminProtection></AdminProtection>,
-      },
+
       {
         path: "/login",
         element: (
@@ -96,6 +93,10 @@ const router = createBrowserRouter([
         element: <DonataionDetails></DonataionDetails>,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashbordLayout></DashbordLayout>,
   },
 ]);
 
