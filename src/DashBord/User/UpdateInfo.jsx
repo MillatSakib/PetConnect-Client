@@ -33,7 +33,7 @@ const UpdateInfo = () => {
   return (
     <div className="w-[95%] md:w-[85%] lg:w-[65%] mx-auto">
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mt-10 text-orange-500 dark:text-orange-400">
-        Add A Pet
+        Update Pet Information
       </h1>
       <Formik
         initialValues={{
@@ -53,7 +53,6 @@ const UpdateInfo = () => {
             longDescription: value,
             petCategory: selectValue,
             time: Date.now(),
-            adopted: false,
           };
 
           const formData = new FormData();
@@ -77,7 +76,7 @@ const UpdateInfo = () => {
 
               axios
                 .put(
-                  `http://localhost:5000/updatePet/${defaultData.data._id}`,
+                  `https://petconnect-kappa.vercel.app/updatePet/${defaultData.data._id}`,
                   inputData,
                   {
                     withCredentials: true,
