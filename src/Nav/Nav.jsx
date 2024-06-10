@@ -60,13 +60,12 @@ const Nav = () => {
                 </DropdownMenuLabel>
 
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <NavLink to="/dashboard">Dashboard</NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/updateprofile">Update Profile</Link>
-                </DropdownMenuItem>
-
+                <NavLink to="/dashboard">
+                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                </NavLink>
+                <Link to="/updateprofile">
+                  <DropdownMenuItem>Update Profile</DropdownMenuItem>
+                </Link>
                 <DropdownMenuItem>
                   <div
                     className="w-full flex justify-between items-center font-bold"
@@ -210,13 +209,13 @@ const Nav = () => {
                 <DropdownMenuLabel>
                   <div className="mx-6">{user?.displayName}</div>
                 </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <NavLink to="/dashboard">Dashboard</NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/updateprofile">Update Profile</Link>
-                </DropdownMenuItem>
+                <NavLink to="/dashboard">
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                </NavLink>
+                <Link to="/updateprofile">
+                  <DropdownMenuItem>Update Profile</DropdownMenuItem>
+                </Link>
 
                 <DropdownMenuItem>
                   <div

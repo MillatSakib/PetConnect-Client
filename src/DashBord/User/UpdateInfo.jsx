@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Formik, Field, Form } from "formik";
@@ -6,9 +6,19 @@ import Select from "react-select";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "@/AuthProvider";
 
 const UpdateInfo = () => {
-  const [value, setValue] = useState("");
+  const defaultData = useLoaderData();
+  const optionValue = {
+    value: defaultData.data.petCategory,
+    label:
+      defaultData?.data?.petCategory?.charAt(0)?.toUpperCase() +
+      defaultData?.data?.petCategory?.slice(1),
+  };
+  const { user } = useContext(AuthContext);
+  const [value, setValue] = useState(defaultData.data.longDescription);
   const [selectValue, setSelectValue] = useState("");
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -27,9 +37,11 @@ const UpdateInfo = () => {
       </h1>
       <Formik
         initialValues={{
-          petName: "",
-          petAge: 0,
-          email: "",
+          petName: defaultData?.data?.petName,
+          petAge: defaultData?.data?.petAge,
+          email: user?.email,
+          petLocation: defaultData?.data?.petLocation,
+          shortDescription: defaultData?.data?.shortDescription,
           myfile: null,
         }}
         onSubmit={async (values) => {
@@ -62,10 +74,15 @@ const UpdateInfo = () => {
             if (data.success) {
               const imgUrl = data.data.url;
               inputData.petImgURL = imgUrl;
+
               axios
-                .post("https://petconnect-kappa.vercel.app/addPet", inputData, {
-                  withCredentials: true,
-                })
+                .put(
+                  `http://localhost:5000/updatePet/${defaultData.data._id}`,
+                  inputData,
+                  {
+                    withCredentials: true,
+                  }
+                )
                 .then((data) =>
                   toast.success(data.data, {
                     position: "bottom-right",
@@ -131,6 +148,7 @@ const UpdateInfo = () => {
                 <br />
                 <Select
                   id="petCategory"
+                  defaultValue={optionValue}
                   name="petCategory"
                   options={options}
                   onChange={(value) => setSelectValue(value.value)}
@@ -184,7 +202,7 @@ const UpdateInfo = () => {
               <label htmlFor="longDescription">Long Description</label>
               <ReactQuill
                 theme="snow"
-                value={value}
+                defaultValue={value}
                 onChange={setValue}
                 id="longDescription"
                 placeholder="Describe about your pet"

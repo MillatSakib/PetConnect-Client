@@ -118,6 +118,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/myDonation",
+        loader: () =>
+          axios.get(`https://petconnect-kappa.vercel.app/myDonation`),
         element: <MyDonation></MyDonation>,
       },
       {
@@ -150,6 +152,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/update/:id",
+        loader: ({ params }) =>
+          axios.get(
+            `https://petconnect-kappa.vercel.app/petDetails/${params.id}`
+          ),
         element: <UpdateInfo></UpdateInfo>,
       },
     ],

@@ -125,7 +125,7 @@ const MyPets = () => {
               </TableCell>
               <TableCell className="text-right">
                 <Link
-                  to={`/dashboard/update/:${data?._id}`}
+                  to={`/dashboard/update/${data?._id}`}
                   className="text-white bg-green-500 dark:bg-green-600 hover:dark:bg-green-700 hover:bg-green-600 active:bg-green-700 active:dark:bg-green-800 px-4 py-1 rounded-xl"
                 >
                   Update Info
