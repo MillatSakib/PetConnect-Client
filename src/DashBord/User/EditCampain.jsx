@@ -8,24 +8,26 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useLoaderData } from "react-router-dom";
 
-const AddDonationCampain = () => {
-  const [value, setValue] = useState("");
-  const [date, setDate] = useState(new Date());
+const EditCampain = () => {
+  const [detailsData, setDetailsData] = useState(useLoaderData());
+  const [value, setValue] = useState(detailsData.data.longDescription);
+  const [date, setDate] = useState(detailsData?.data?.lastDateOfDonation);
   const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
   return (
     <div className="w-[95%] md:w-[85%] lg:w-[65%] mx-auto">
       <h2 className="text-2xl md:text-3xl lg:text-4xl my-6 md:my-8 lg:my-10 text-center font-bold">
-        Add Donation Campain
+        Update Your Donation Campain
       </h2>
       <Formik
         initialValues={{
-          petName: "",
-          petAge: 0,
-          email: "",
+          petName: detailsData?.data?.name,
+          maxAmount: detailsData?.data?.maxDonation,
           myfile: null,
+          shortDescription: detailsData.data.shortDescription,
         }}
         onSubmit={async (values) => {
           const inputData = {
@@ -56,8 +58,8 @@ const AddDonationCampain = () => {
               const imgUrl = data.data.url;
               inputData.petPicture = imgUrl;
               axios
-                .post(
-                  "https://petconnect-kappa.vercel.app/addDonationCampain",
+                .put(
+                  `https://petconnect-kappa.vercel.app/editDonationCampign/${detailsData.data._id}`,
                   inputData,
                   {
                     withCredentials: true,
@@ -179,4 +181,4 @@ const AddDonationCampain = () => {
   );
 };
 
-export default AddDonationCampain;
+export default EditCampain;

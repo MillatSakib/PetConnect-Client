@@ -32,6 +32,7 @@ import AllPet from "./DashBord/Admin/AllPet";
 import AllUser from "./DashBord/Admin/AllUser";
 import AllDonation from "./DashBord/Admin/AllDonation";
 import UpdateInfo from "./DashBord/User/UpdateInfo";
+import EditCampain from "./DashBord/User/EditCampain";
 axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([
@@ -136,6 +137,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/donationCampain",
+        loader: () =>
+          axios.get(`https://petconnect-kappa.vercel.app/myAchivedDonation`),
         element: <DonationCampain></DonationCampain>,
       },
       {
@@ -146,10 +149,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allPet",
+        loader: () => axios.get("https://petconnect-kappa.vercel.app/allPets"),
         element: <AllPet></AllPet>,
       },
       {
         path: "/dashboard/allUsers",
+        loader: () => axios.get("https://petconnect-kappa.vercel.app/allUsers"),
         element: <AllUser></AllUser>,
       },
       {
@@ -163,6 +168,14 @@ const router = createBrowserRouter([
             `https://petconnect-kappa.vercel.app/petDetails/${params.id}`
           ),
         element: <UpdateInfo></UpdateInfo>,
+      },
+      {
+        path: "/dashboard/myCampainEdit/:id",
+        loader: ({ params }) =>
+          axios.get(
+            `https://petconnect-kappa.vercel.app/donationDetails/${params.id}`
+          ),
+        element: <EditCampain></EditCampain>,
       },
     ],
   },
