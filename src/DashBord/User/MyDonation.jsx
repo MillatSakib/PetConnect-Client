@@ -62,9 +62,9 @@ const MyDonation = () => {
             <TableHead className="w-[100px]">Serial No.</TableHead>
             <TableHead>Pet Name</TableHead>
 
-            <TableHead className="text-right">Pet Image</TableHead>
-            <TableHead className="text-right">Donated Amount</TableHead>
-            <TableHead className="text-right">Ask for Refund</TableHead>
+            <TableHead className="text-center">Pet Image</TableHead>
+            <TableHead className="text-center">Donated Amount</TableHead>
+            <TableHead className="text-center">Ask for Refund</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -73,14 +73,14 @@ const MyDonation = () => {
               <TableCell className="font-medium">{index + 1}</TableCell>
               <TableCell>{data?.name}</TableCell>
 
-              <TableCell className="text-right">
+              <TableCell className="flex justify-center">
                 <img src={data?.petPicture} className="h-10 md:h-14 lg:h-18" />
               </TableCell>
 
-              <TableCell className="text-right">
+              <TableCell className="text-center">
                 $ {data?.donationAmount}
               </TableCell>
-              <TableCell className="text-right">
+              <TableCell className="text-center">
                 <button
                   onClick={() => handleDelete(data._id)}
                   className="text-white bg-orange-500 dark:bg-orange-600 hover:dark:bg-orange-700 hover:bg-orange-600 active:bg-orange-700 active:dark:bg-orange-800 px-4 py-1 rounded-xl"

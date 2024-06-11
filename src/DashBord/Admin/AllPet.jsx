@@ -16,7 +16,6 @@ import { Badge } from "@/components/ui/badge";
 
 const AllPet = () => {
   const [data, setData] = useState(useLoaderData());
-  console.log(data);
   const handleDelete = (id) => {
     axios
       .delete(`https://petconnect-kappa.vercel.app/petDelete/${id}`, {
@@ -33,7 +32,33 @@ const AllPet = () => {
           .then((data) => setData(data));
       })
       .catch((error) => {
-        toast.error(data.data, {
+        toast.error(error.response, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+        });
+        axios
+          .get("https://petconnect-kappa.vercel.app/allPets")
+          .then((data) => setData(data));
+      });
+  };
+  const handleAdoption = (id) => {
+    axios
+      .patch(`https://petconnect-kappa.vercel.app/petAdoptedByAdmin/${id}`, {
+        withCredentials: true,
+      })
+      .then((data) => {
+        toast.success(data.data, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+        });
+        axios
+          .get("https://petconnect-kappa.vercel.app/allPets")
+          .then((data) => setData(data));
+      })
+      .catch((error) => {
+        toast.error(error.response, {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -90,12 +115,21 @@ const AllPet = () => {
                 </Badge>
               </TableCell>
               <TableCell className="text-center">
-                <Badge
-                  variant="secondary"
-                  className="text-[.8rem] hover:cursor-pointer select-none"
-                >
-                  Adopt it
-                </Badge>
+                {data?.adopted ? (
+                  <span className="cursor-not-allowed">
+                    <Badge variant="green" className="text-[.8rem] select-none">
+                      Already Adopted
+                    </Badge>
+                  </span>
+                ) : (
+                  <Badge
+                    onClick={() => handleAdoption(data?._id)}
+                    variant="secondary"
+                    className="text-[.8rem] hover:cursor-pointer select-none"
+                  >
+                    Adopt it
+                  </Badge>
+                )}
               </TableCell>
             </TableRow>
           ))}
