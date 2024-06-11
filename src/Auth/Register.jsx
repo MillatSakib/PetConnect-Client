@@ -68,6 +68,15 @@ const Register = () => {
           displayName: name,
           photoURL: imgUrl,
         });
+        const credential = {
+          email: auth.currentUser.email,
+          photoURL: auth.currentUser.photoURL,
+          uid: auth.currentUser.uid,
+          displayName: auth.currentUser.displayName,
+        };
+        axios.post("https://petconnect-kappa.vercel.app/userSign", credential, {
+          withCredentials: true,
+        });
 
         let temp = componentRender;
         setComponentRender(!temp);

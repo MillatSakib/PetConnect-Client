@@ -43,7 +43,6 @@ export default function CustomSideBar() {
       .then((data) => setAccess(data.data))
       .catch((error) => setAccess({ message: "forbidden access" }));
   }, []);
-  console.log(access);
   return (
     <div className="flex min-h-[100vh] h-[120vh]">
       <Sidebar
