@@ -34,7 +34,8 @@ const DonationCampain = () => {
   const donataionDetails = (id) => {
     axios
       .get(`https://petconnect-kappa.vercel.app/viewDonator/${id}`)
-      .then((data) => setDonationDetailData(data.data));
+      .then((data) => setDonationDetailData(data.data))
+      .catch((error) => console.log(error));
   };
   const pauseDonation = (id) => {
     axios
@@ -94,7 +95,7 @@ const DonationCampain = () => {
       });
   };
   return (
-    <div>
+    <div className="pl-2 pr-4">
       <h2 className="text-2xl md:text-3xl lg:text-4xl my-6 md:my-8 lg:my-10 text-center font-bold">
         My Donation Campain
       </h2>
@@ -164,18 +165,16 @@ const DonationCampain = () => {
                       Pause
                     </Badge>
                   )}
-
-                  {console.log(data.paused)}
                 </div>
               </TableCell>
               <TableCell className="text-right">
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button variant="outline">
-                      <FaRegEye
-                        className="text-2xl cursor-pointer select-none"
-                        onClick={() => donataionDetails(data?.campaignId)}
-                      />
+                    <Button
+                      variant="outline"
+                      onClick={() => donataionDetails(data?.campaignId)}
+                    >
+                      <FaRegEye className="text-2xl cursor-pointer select-none" />
                     </Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
@@ -184,7 +183,8 @@ const DonationCampain = () => {
                       <AlertDialogDescription>
                         <Table>
                           <TableCaption>
-                            A list of your donation details
+                            A list of your donation details. The total amount of
+                            Donation here $ {data.totalDonation}
                           </TableCaption>
                           <TableHeader>
                             <TableRow>
@@ -224,7 +224,11 @@ const DonationCampain = () => {
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogAction>Close</AlertDialogAction>
+                      <AlertDialogAction
+                        onClick={() => setDonationDetailData([])}
+                      >
+                        Close
+                      </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>

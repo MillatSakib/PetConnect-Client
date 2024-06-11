@@ -93,7 +93,10 @@ const MyPets = () => {
   };
 
   return (
-    <div>
+    <div className="pl-2 pr-4">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl my-6 md:my-8 lg:my-10 text-center font-bold">
+        My Added Pets
+      </h2>
       <Table>
         <TableHeader>
           <TableRow>
@@ -142,7 +145,7 @@ const MyPets = () => {
               <TableCell className="text-right">
                 {data.adopted ? (
                   <button className="text-white bg-orange-200 dark:bg-orange-300 hover:dark:bg-orange-200 hover:bg-orange-300 active:bg-orange-200 active:dark:bg-orange-300 px-4 py-1 rounded-xl cursor-not-allowed">
-                    Make Adopted
+                    Adopted
                   </button>
                 ) : (
                   <button

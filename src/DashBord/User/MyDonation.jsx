@@ -52,7 +52,10 @@ const MyDonation = () => {
   };
   // console.log(data);
   return (
-    <div>
+    <div className="pl-2 pr-4">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl my-6 md:my-8 lg:my-10 text-center font-bold">
+        All My Donation
+      </h2>
       <Table>
         <TableHeader>
           <TableRow>

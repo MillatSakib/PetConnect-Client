@@ -11,10 +11,47 @@ import axios from "axios";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Badge } from "@/components/ui/badge";
 
 const AdoptionRequest = () => {
   const [data, setData] = useState(useLoaderData());
-  console.log(data);
+  const handleReject = (adopterId) => {
+    axios
+      .patch(
+        `https://petconnect-kappa.vercel.app/rejectAdoptionReq/${adopterId}`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((data) => {
+        toast.success(data.data, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+        });
+        axios
+          .get(`https://petconnect-kappa.vercel.app/allAdoptionReq`, {
+            withCredentials: true,
+          })
+          .then((data) => {
+            setData(data);
+          })
+          .catch((error) => {
+            toast.success(error.data, {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+            });
+          });
+      })
+      .catch((error) => {
+        toast.success(error.data, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+        });
+      });
+  };
   const handleAccpet = (petId, adopterId) => {
     axios
       .patch(
@@ -46,7 +83,6 @@ const AdoptionRequest = () => {
           });
       })
       .catch((error) => {
-        console.log(error);
         toast.success(error.data, {
           position: "bottom-right",
           autoClose: 5000,
@@ -66,10 +102,11 @@ const AdoptionRequest = () => {
               <TableHead className="w-[100px]">Serial No.</TableHead>
               <TableHead>Name</TableHead>
 
-              <TableHead className="text-right">Email</TableHead>
-              <TableHead className="text-right">Phone No.</TableHead>
-              <TableHead className="text-right">Location</TableHead>
-              <TableHead className="text-right">Accept Req</TableHead>
+              <TableHead className="text-center">Email</TableHead>
+              <TableHead className="text-center">Phone No.</TableHead>
+              <TableHead className="text-center">Location</TableHead>
+              <TableHead className="text-center">Req Status</TableHead>
+              <TableHead className="text-center">Accept Req</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -78,24 +115,62 @@ const AdoptionRequest = () => {
                 <TableCell className="font-medium">{index + 1}</TableCell>
                 <TableCell>{data?.name}</TableCell>
 
-                <TableCell className="text-right">{data?.email}</TableCell>
+                <TableCell className="text-center">{data?.email}</TableCell>
 
-                <TableCell className="text-right">
-                  $ {data?.phoneNumber}
+                <TableCell className="text-center">
+                  {data?.phoneNumber}
                 </TableCell>
-                <TableCell className="text-right">{data?.address}</TableCell>
-                <TableCell className="text-right">
-                  {!data?.accepted && !data?.rejected ? (
-                    <button
-                      onClick={() => handleAccpet(data.petId, data._id)}
-                      className="text-white bg-orange-500 dark:bg-orange-600 hover:dark:bg-orange-700 hover:bg-orange-600 active:bg-orange-700 active:dark:bg-orange-800 px-4 py-1 rounded-xl"
-                    >
-                      Accept
+                <TableCell className="text-center">{data?.address}</TableCell>
+                <TableCell className="text-center">
+                  {data?.adopted ? (
+                    data?.accepted ? (
+                      <Badge variant="green">Accepted</Badge>
+                    ) : (
+                      <Badge variant="destructive">Pet Adopted By Others</Badge>
+                    )
+                  ) : data?.rejected ? (
+                    <Badge variant="destructive">Rejected</Badge>
+                  ) : (
+                    <Badge variant="secondary">Pending..</Badge>
+                  )}
+                </TableCell>
+                <TableCell className="text-center">
+                  {data?.adopted ? (
+                    data?.accepted ? (
+                      <button className="text-white bg-green-500 dark:bg-green-600 hover:dark:bg-green-700 hover:bg-green-600 active:bg-green-700 active:dark:bg-green-800 px-4 py-1 rounded-xl">
+                        Adopted
+                      </button>
+                    ) : data?.rejected ? (
+                      <button className="text-white bg-orange-200 dark:bg-orange-300 hover:dark:bg-orange-300 hover:bg-orange-200 active:bg-orange-300 active:dark:bg-orange-300 px-4 py-1 rounded-xl cursor-not-allowed select-none">
+                        Rejected
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleReject(data._id)}
+                        className="text-white bg-orange-500 dark:bg-orange-600 hover:dark:bg-orange-700 hover:bg-orange-600 active:bg-orange-700 active:dark:bg-orange-800 px-4 py-1 rounded-xl"
+                      >
+                        Reject
+                      </button>
+                    )
+                  ) : data?.rejected ? (
+                    <button className="text-white bg-orange-200 dark:bg-orange-300 hover:dark:bg-orange-300 hover:bg-orange-200 active:bg-orange-300 active:dark:bg-orange-300 px-4 py-1 rounded-xl cursor-not-allowed select-none">
+                      Rejected
                     </button>
                   ) : (
-                    <button className="text-white bg-orange-200 dark:bg-orange-300 hover:dark:bg-orange-300 hover:bg-orange-200 active:bg-orange-300 active:dark:bg-orange-300 px-4 py-1 rounded-xl cursor-not-allowed select-none">
-                      Accept
-                    </button>
+                    <div className="flex flex-col gap-1 center">
+                      <button
+                        onClick={() => handleAccpet(data.petId, data._id)}
+                        className="text-white bg-green-500 dark:bg-green-600 hover:dark:bg-green-700 hover:bg-green-600 active:bg-green-700 active:dark:bg-green-800 px-4 py-1 rounded-xl"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        onClick={() => handleReject(data._id)}
+                        className="text-white bg-orange-500 dark:bg-orange-600 hover:dark:bg-orange-700 hover:bg-orange-600 active:bg-orange-700 active:dark:bg-orange-800 px-4 py-1 rounded-xl"
+                      >
+                        Reject
+                      </button>
+                    </div>
                   )}
                 </TableCell>
               </TableRow>
