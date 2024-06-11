@@ -32,6 +32,7 @@ import AllPet from "./DashBord/Admin/AllPet";
 import AllUser from "./DashBord/Admin/AllUser";
 import AllDonation from "./DashBord/Admin/AllDonation";
 import UpdateInfo from "./DashBord/User/UpdateInfo";
+import UpdateInfoAdmin from "./DashBord/Admin/UpdateInfo";
 import EditCampain from "./DashBord/User/EditCampain";
 axios.defaults.withCredentials = true;
 
@@ -159,6 +160,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allDonaiton",
+        loader: () =>
+          axios.get("https://petconnect-kappa.vercel.app/donationCampaigns"),
         element: <AllDonation></AllDonation>,
       },
       {
@@ -176,6 +179,14 @@ const router = createBrowserRouter([
             `https://petconnect-kappa.vercel.app/donationDetails/${params.id}`
           ),
         element: <EditCampain></EditCampain>,
+      },
+      {
+        path: "/dashboard/updatePetAdmin/:id",
+        loader: ({ params }) =>
+          axios.get(
+            `https://petconnect-kappa.vercel.app/petDetails/${params.id}`
+          ),
+        element: <UpdateInfoAdmin></UpdateInfoAdmin>,
       },
     ],
   },

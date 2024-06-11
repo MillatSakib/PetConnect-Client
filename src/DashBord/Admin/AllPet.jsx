@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -98,12 +98,14 @@ const AllPet = () => {
                 </Avatar>
               </TableCell>
               <TableCell className="text-center">
-                <Badge
-                  variant="secondary"
-                  className="text-[.8rem] hover:cursor-pointer select-none"
-                >
-                  Update
-                </Badge>
+                <Link to={`/dashboard/updatePetAdmin/${data?._id}`}>
+                  <Badge
+                    variant="secondary"
+                    className="text-[.8rem] hover:cursor-pointer select-none"
+                  >
+                    Update
+                  </Badge>
+                </Link>
               </TableCell>
               <TableCell className="text-center">
                 <Badge
