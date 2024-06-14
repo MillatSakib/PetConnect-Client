@@ -6,6 +6,8 @@ PetConnect is an online pet adoption platform designed to connect loving familie
 
 **Live Link: [https://petconnect0.netlify.app/](https://petconnect0.netlify.app/)**
 
+**Server GitHub Link: [https://github.com/MillatSakib/PetConnect-Server](https://github.com/MillatSakib/PetConnect-Server)**
+
 ## How Does PetConnect Work?
 
 ### 1. User Registration and Login:
@@ -80,7 +82,7 @@ To setup the project you have to execute the command below:
 npm i
 ```
 
-2. After install all package you need to run your project. But you can't run your project directly. Because I use environment variabel in security purpose. You have to add a `.env` file in your root directory and the a sample code of `.env` file are given below:
+2. After install all package you need to run your project. But you can't run your project directly. Because I use environment variabel for security purpose. You have to add a `.env` file in your root directory and the a sample code of `.env` file are given below:
 
 ```.env
 VITE_apiKey=*******************
@@ -108,4 +110,4 @@ npm run dev
 npm run build
 ```
 
-#### Note: Must have install Git and Nodejs to do it!
+#### Note: Must have installed Git and Nodejs in your system to do it!
