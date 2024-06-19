@@ -53,7 +53,10 @@ export default function CustomSideBar() {
       >
         <Sidebar.Items>
           <Sidebar.ItemGroup>
-            <Sidebar.Item href="/">
+            <Sidebar.Item
+              href="/"
+              className=" font-bold hover:dark:bg-slate-700"
+            >
               <div className="flex items-center justify-center gap-1">
                 <img src="https://raw.githubusercontent.com/MillatSakib/img-src/main/logo.png" />
                 <span className="text-xl md:text-2xl lg:text-3xl font-bold">
@@ -62,7 +65,7 @@ export default function CustomSideBar() {
               </div>
             </Sidebar.Item>
             <Link to="/">
-              <Sidebar.Item>
+              <Sidebar.Item className="hover:dark:bg-slate-700">
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <IoMdHome />
                   <span>Home</span>
@@ -70,7 +73,7 @@ export default function CustomSideBar() {
               </Sidebar.Item>
             </Link>
             <Link to="/dashboard/addPet">
-              <Sidebar.Item>
+              <Sidebar.Item className="hover:dark:bg-slate-700">
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <IoAdd />
                   <span>Add Pet</span>
@@ -78,7 +81,7 @@ export default function CustomSideBar() {
               </Sidebar.Item>
             </Link>
             <Link to="/dashboard/myDonation">
-              <Sidebar.Item>
+              <Sidebar.Item className="hover:dark:bg-slate-700">
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <FaDonate />
                   <span>My Donation</span>
@@ -86,7 +89,7 @@ export default function CustomSideBar() {
               </Sidebar.Item>
             </Link>
             <Link to="/dashboard/myAddedPets">
-              <Sidebar.Item>
+              <Sidebar.Item className="hover:dark:bg-slate-700">
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <VscDiffAdded />
                   <span> My Added Pets</span>
@@ -94,7 +97,7 @@ export default function CustomSideBar() {
               </Sidebar.Item>
             </Link>
             <Link to="/dashboard/adoptionRequest">
-              <Sidebar.Item>
+              <Sidebar.Item className="hover:dark:bg-slate-700">
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <GrUploadOption />
                   <span> Adoption Requests</span>
@@ -102,7 +105,7 @@ export default function CustomSideBar() {
               </Sidebar.Item>
             </Link>
             <Link to="/dashboard/donationCampain">
-              <Sidebar.Item>
+              <Sidebar.Item className="hover:dark:bg-slate-700">
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <LiaDonateSolid />
                   <span>My Donation Campains</span>
@@ -110,7 +113,7 @@ export default function CustomSideBar() {
               </Sidebar.Item>
             </Link>
             <Link to="/dashboard/createDonationCampain">
-              <Sidebar.Item>
+              <Sidebar.Item className="hover:dark:bg-slate-700">
                 <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                   <BiSolidDonateBlood />
                   <span> Create Donation Campain</span>
@@ -125,7 +128,7 @@ export default function CustomSideBar() {
               </div>
               <Sidebar.ItemGroup>
                 <Link to="/dashboard/allUsers">
-                  <Sidebar.Item>
+                  <Sidebar.Item className="hover:dark:bg-slate-700">
                     <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                       <FaUserAlt />
                       <span> All Users</span>
@@ -133,7 +136,7 @@ export default function CustomSideBar() {
                   </Sidebar.Item>
                 </Link>
                 <Link to="/dashboard/allPet">
-                  <Sidebar.Item>
+                  <Sidebar.Item className="hover:dark:bg-slate-700">
                     <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                       <MdOutlinePets />
                       <span> All Pets</span>
@@ -141,7 +144,7 @@ export default function CustomSideBar() {
                   </Sidebar.Item>
                 </Link>
                 <Link to="/dashboard/allDonaiton">
-                  <Sidebar.Item>
+                  <Sidebar.Item className="hover:dark:bg-slate-700">
                     <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                       <BiDonateBlood />
                       <span>All Donation</span>
