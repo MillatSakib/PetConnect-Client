@@ -7,8 +7,22 @@ import ServerHit from "./LoggerComponent/ServerHit";
 import ApiError from "./LoggerComponent/ApiError";
 
 const Logger = () => {
-  const [cpuUsageData, setCpuUsageData] = useState([]);
-  const [memoryUsageData, setMemoryUsageData] = useState([]);
+  const [cpuUsageData, setCpuUsageData] = useState([
+    { CPU_USAGE: 1 },
+    { CPU_USAGE: 3 },
+    { CPU_USAGE: 1 },
+    { CPU_USAGE: 1 },
+    { CPU_USAGE: 5 },
+    { CPU_USAGE: 6 },
+  ]);
+  const [memoryUsageData, setMemoryUsageData] = useState([
+    { MEMORY_USAGE: 13 },
+    { MEMORY_USAGE: 10 },
+    { MEMORY_USAGE: 13 },
+    { MEMORY_USAGE: 14 },
+    { MEMORY_USAGE: 15 },
+    { MEMORY_USAGE: 17 },
+  ]);
 
   const {
     data = {},
