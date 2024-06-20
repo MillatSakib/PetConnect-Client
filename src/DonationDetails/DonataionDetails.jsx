@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
-// axios.defaults.withCredentials = true;
 import {
   Dialog,
   DialogContent,
@@ -27,24 +26,19 @@ const DonataionDetails = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://petconnect-kappa.vercel.app/randomDoanation`)
+      .get(`https://petconnect-kappa.vercel.app/randomDoanation/${data?._id}`)
       .then((response) => {
         setRandomData(response.data);
         setLoading(false);
-        // setLoading(false);
       })
       .catch((error) => {
         setRandomData([]);
         setLoading(false);
         console.error("Error fetching random pets:", error);
-        // setLoading(false);
       });
   }, [data?.petCategory]);
 
-  console.log(data);
-
   const [isOpen, setIsOpen] = useState(false);
-  //   console.log(randomData);
   const { user } = useContext(AuthContext);
   const handleAdoption = (e) => {
     e.preventDefault();
@@ -132,7 +126,7 @@ const DonataionDetails = () => {
                           {data?.petName}
                         </DialogTitle>
                         <DialogDescription>
-                          Please fillup the form correctly for sent request to
+                          Please fill up the form correctly for sent request to
                           adopt the pet!
                         </DialogDescription>
                       </DialogHeader>

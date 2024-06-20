@@ -34,7 +34,16 @@ import AllDonation from "./DashBord/Admin/AllDonation";
 import UpdateInfo from "./DashBord/User/UpdateInfo";
 import UpdateInfoAdmin from "./DashBord/Admin/UpdateInfo";
 import EditCampain from "./DashBord/User/EditCampain";
+import Logger from "./DashBord/Admin/Logger";
 axios.defaults.withCredentials = true;
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+
+// Create a client
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -188,6 +197,10 @@ const router = createBrowserRouter([
           ),
         element: <UpdateInfoAdmin></UpdateInfoAdmin>,
       },
+      {
+        path: "/dashboard/logger",
+        element: <Logger></Logger>,
+      },
     ],
   },
 ]);
@@ -196,7 +209,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <React.StrictMode>
       <AuthProvider>
-        <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
         <ToastContainer></ToastContainer>
       </AuthProvider>
     </React.StrictMode>

@@ -26,7 +26,10 @@ const PetDetails = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://petconnect-kappa.vercel.app/randomPet/${data?.petCategory}`)
+      .post(
+        `https://petconnect-kappa.vercel.app/randomPet/${data?.petCategory}`,
+        { toOmit: data._id }
+      )
       .then((response) => {
         setRandomData(response.data);
         setLoading(false);

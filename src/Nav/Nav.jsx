@@ -26,7 +26,7 @@ const Nav = () => {
   // console.log(user.uid);
 
   return (
-    <nav className=" bg-slate-100 border-gray-200 dark:bg-gray-900">
+    <nav className=" bg-slate-100 border-gray-200 dark:bg-gray-800">
       <div className="flex flex-wrap items-center justify-between md:justify-start mx-auto p-4">
         <NavLink
           href="/fsdfasddf"
@@ -122,7 +122,7 @@ const Nav = () => {
             <li>
               <NavLink
                 to={"/"}
-                className="block py-2 px-3 text-white  rounded md:bg-transparent  md:p-0 dark:text-white"
+                className="block py-2 px-3 rounded md:bg-transparent  md:p-0 dark:text-white dark:hover:bg-slate-500"
                 aria-current="page"
               >
                 Home
@@ -131,7 +131,7 @@ const Nav = () => {
             <li>
               <NavLink
                 to={"/petListing"}
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white   md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white dark:hover:bg-slate-500"
               >
                 Pet Listing
               </NavLink>
@@ -139,13 +139,13 @@ const Nav = () => {
             <li>
               <NavLink
                 to={"/donationCampaings"}
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white   md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white dark:hover:bg-slate-500"
               >
                 Donation Campaings
               </NavLink>
             </li>
 
-            <li>
+            <li className="mt-2">
               <div className="flex items-center justify-end gap-4">
                 <ModeToggle></ModeToggle>
                 {user ? (
@@ -167,13 +167,13 @@ const Nav = () => {
             id="navbar-default"
           >
             <ul
-              className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-slate-100 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+              className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-slate-100 dark:bg-gray-800 md:dark:bg-gray-800 dark:border-gray-700"
               id="navMenu"
             >
               <li>
                 <NavLink
                   to={"/"}
-                  className="block py-2 px-3 text-white  rounded md:bg-transparent md:pb-1 dark:text-white  md:text-[1.1rem] font-bold"
+                  className="block py-2 px-3 text-gray-900  rounded md:bg-transparent md:pb-1 dark:text-white  md:text-[1.1rem] font-bold"
                   aria-current="page"
                 >
                   Home

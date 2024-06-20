@@ -27,6 +27,7 @@ import axios from "axios";
 import { FaUserAlt } from "react-icons/fa";
 import { BiDonateBlood } from "react-icons/bi";
 import { MdOutlinePets } from "react-icons/md";
+import { CgPerformance } from "react-icons/cg";
 
 export default function CustomSideBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -148,6 +149,14 @@ export default function CustomSideBar() {
                     <div className="flex items-center text-[1.1rem] gap-1 justify-end">
                       <BiDonateBlood />
                       <span>All Donation</span>
+                    </div>
+                  </Sidebar.Item>
+                </Link>
+                <Link to="/dashboard/logger">
+                  <Sidebar.Item className="hover:dark:bg-slate-700">
+                    <div className="flex items-center text-[1.1rem] gap-1 justify-end">
+                      <CgPerformance />
+                      <span>Logger</span>
                     </div>
                   </Sidebar.Item>
                 </Link>

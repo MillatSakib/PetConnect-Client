@@ -1,5 +1,4 @@
 #navMenu li .active {
-  color: white;
   border-bottom: 3px solid rgb(255, 80, 80);
   border-radius: 10px;
 }

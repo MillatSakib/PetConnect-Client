@@ -128,10 +128,14 @@ const PetListing = () => {
         next={fetchData}
         hasMore={hasMore}
         loader={
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[95%] md:w-[80%] lg:w-[85%] mx-auto">
-            {[{}, {}, {}, {}, {}, {}].map((_, index) => (
-              <SkeletonCard key={index}></SkeletonCard>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[95%] md:w-[99%] lg:w-[85%] mx-auto">
+            <SkeletonCard></SkeletonCard>
+            <div className="hidden md:block">
+              <SkeletonCard></SkeletonCard>
+            </div>
+            <div className="hidden lg:block">
+              <SkeletonCard></SkeletonCard>
+            </div>
           </div>
         }
         endMessage={
@@ -140,7 +144,7 @@ const PetListing = () => {
           </p>
         }
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[95%] md:w-[80%] lg:w-[85%] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[95%] md:w-[99%] lg:w-[85%] mx-auto">
           {data.map((data, index) => (
             <PetCard data={data} key={index}></PetCard>
           ))}
