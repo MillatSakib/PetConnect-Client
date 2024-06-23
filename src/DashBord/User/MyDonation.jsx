@@ -64,6 +64,7 @@ const MyDonation = () => {
 
             <TableHead className="text-center">Pet Image</TableHead>
             <TableHead className="text-center">Donated Amount</TableHead>
+            <TableHead className="text-center">Transaction ID</TableHead>
             <TableHead className="text-center">Ask for Refund</TableHead>
           </TableRow>
         </TableHeader>
@@ -80,6 +81,7 @@ const MyDonation = () => {
               <TableCell className="text-center">
                 $ {data?.donationAmount}
               </TableCell>
+              <TableCell className="text-center">$ {data?.trxID}</TableCell>
               <TableCell className="text-center">
                 <button
                   onClick={() => handleDelete(data._id)}

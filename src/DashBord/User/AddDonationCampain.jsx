@@ -34,7 +34,7 @@ const AddDonationCampain = () => {
             lastDateOfDonation: date,
             shortDescription: values?.shortDescription,
             longDescription: value,
-            ceateTime: Date.now(),
+            createTime: Date.now(),
           };
 
           const formData = new FormData();

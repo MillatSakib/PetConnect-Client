@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useContext, useEffect, useState } from "react";
 import { Sidebar } from "flowbite-react";
 import { BiBuoy } from "react-icons/bi";

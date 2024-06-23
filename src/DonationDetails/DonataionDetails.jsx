@@ -18,7 +18,7 @@ import { AuthContext } from "@/AuthProvider";
 import SkeletonCard from "@/PetListing/SkeletonCard";
 import PetCard from "@/PetListing/PetCard";
 import DonationCard from "@/DonationCampaigns/DonationCard";
-
+axios.defaults.withCredentials = true;
 const DonataionDetails = () => {
   const data = useLoaderData().data;
   const [randomData, setRandomData] = useState([]);
@@ -36,26 +36,22 @@ const DonataionDetails = () => {
         setLoading(false);
         console.error("Error fetching random pets:", error);
       });
-  }, [data?.petCategory]);
+  }, [data]);
 
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useContext(AuthContext);
   const handleAdoption = (e) => {
     e.preventDefault();
     setIsOpen(false);
-    const name = e.target.name.value;
     const phone = e.target.phone.value;
-    const address = e.target.address.value;
+    const donationAmount = e.target.donationAmount.value;
     const dataBody = {
-      petName: data?.petName,
-      petImgURL: data?.petImgURL,
-      name: name,
       phoneNumber: phone,
-      address: address,
+      donationAmount: donationAmount,
     };
     axios
       .post(
-        `https://petconnect-kappa.vercel.app/petAdoptionUser/${data?._id}`,
+        `https://petconnect-kappa.vercel.app/giveDonation/${data?._id}`,
         dataBody
       )
       .then((response) => {
@@ -90,7 +86,9 @@ const DonataionDetails = () => {
               <div className="mt-2 md:mt-4 text-xl md:text-2xl lg:text-3xl font-bold">
                 Reason For appling Donation
               </div>{" "}
-              {data?.longDescription}
+              <div
+                dangerouslySetInnerHTML={{ __html: data?.longDescription }}
+              />
             </div>
             <div className="dark:opacity-65 opacity-75">
               <div className="mt-2 md:mt-4 text-xl md:text-2xl lg:text-3xl font-bold">
@@ -165,12 +163,16 @@ const DonataionDetails = () => {
                             <Input id="phone" className="col-span-3" required />
                           </div>
                           <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="address" className="text-right">
-                              Address
+                            <Label
+                              htmlFor="donationAmount"
+                              className="text-right"
+                            >
+                              Donation Amount
                             </Label>
                             <Input
-                              id="address"
+                              id="donationAmount"
                               className="col-span-3"
+                              type="number"
                               required
                             />
                           </div>

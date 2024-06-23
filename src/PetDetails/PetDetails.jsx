@@ -41,7 +41,7 @@ const PetDetails = () => {
         console.error("Error fetching random pets:", error);
         // setLoading(false);
       });
-  }, [data?.petCategory]);
+  }, [data]);
   const [isOpen, setIsOpen] = useState(false);
 
   const { user } = useContext(AuthContext);
