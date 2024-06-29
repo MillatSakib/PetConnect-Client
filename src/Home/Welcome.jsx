@@ -15,7 +15,7 @@ const Welcome = () => {
         <div>
           <img
             src={billu}
-            className="min-w-[400px] rounded-tl-[3rem] rounded-br-[3rem] rounded-tr-lg rounded-bl-lg h-auto object-cover"
+            className="min-w-[300px] md:min-w-[400px] rounded-tl-[3rem] rounded-br-[3rem] rounded-tr-lg rounded-bl-lg h-auto object-cover"
           ></img>
         </div>
         <div className="py-10 px-6 rounded-lg max-w-[95%] mx-auto ">

@@ -1,3 +1,4 @@
+import Feedback from "@/Feedback/Feedback";
 import AboutUs from "./AboutUs";
 import Banner from "./Banner";
 import CallToAction from "./CallToAction";
@@ -14,7 +15,7 @@ const Home = () => {
       <PetsCategory></PetsCategory>
       <CallToAction></CallToAction>
       <AboutUs></AboutUs>
-      <ContactUs></ContactUs>
+      <Feedback></Feedback>
       <Sponsor></Sponsor>
     </div>
   );
